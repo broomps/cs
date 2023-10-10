@@ -165,6 +165,13 @@ def SimulateOneYear(Field, Year):
   Field = SimulateWinter(Field)
   Display(Field, 'winter', Year)
 
+def writetofile(board, newfile):
+  with open(newfile, "w") as f:
+    for i in board:
+      for j in i:
+        f.write(j)
+      f.write("\n")
+
 #It is basically main
 def Simulation():
   #Gets number of years
@@ -187,7 +194,9 @@ def Simulation():
           Continuing = False
     print('End of Simulation')
   input()
-   
-if __name__ == "__main__":
-  Simulation()      
+  tofile = input("Do you want to write output to a file(Y/N): ").lower()
+  if tofile == "y":
+    writetofile(Field, "endfile.txt")
 
+if __name__ == "__main__":
+  Simulation()
